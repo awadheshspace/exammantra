@@ -1,0 +1,59 @@
+{% extends 'practice/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid mt-4">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">Practice Materials</a>
+      <div class="d-flex align-items-center">
+        <form class="d-flex me-3" method="GET">
+          <input class="form-control me-2" type="search" 
+                 placeholder="Search materials" name="search"
+                 value="{{ search_query }}">
+          <button class="btn btn-light" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" 
+                 data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle"></i> {{ user.username }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <form action="{% url 'practiceset:logout'%}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="dropdown-item text-danger" > <i class="bi bi-box-arrow-right"></i> Logout</button>
+          </form>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Materials Grid -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for material in materials %}
+    <div class="col">
+      <div class="card h-100 shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ material.title }}</h5>
+          <p class="card-text">{{ material.description }}</p>
+        </div>
+        <div class="card-footer bg-transparent">
+          <a href="{{ material.file.url }}" class="btn btn-primary btn-sm" 
+             target="_blank" title="Preview">
+            <i class="bi bi-eye"></i>
+          </a>
+          <a href="{{ material.file.url }}" download 
+             class="btn btn-success btn-sm" title="Download">
+            <i class="bi bi-download"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

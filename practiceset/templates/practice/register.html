@@ -1,0 +1,23 @@
+{% extends 'practice/base.html' %}
+{% load static %}
+{% block content %}
+<div class="registration-container">
+    <h2>Student Registration</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+      <div class="form-group">
+        <label for="password">Name</label>
+        <input type="text" id="name"  name='name' placeholder="Your Name" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="{% url 'practiceset:login' %}">Login here</a>
+    </div>
+  </div>
+{% endblock %}
+
+

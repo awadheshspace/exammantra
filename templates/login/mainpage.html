@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Mantra Bihar - SKG Coaching</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="{% static 'main.css' %}" rel="stylesheet"> 
+    
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    }
+
+    body {
+    max-width: 100%; /* Prevent horizontal overflow */
+    overflow-x: hidden; /* Hide horizontal scroll (use sparingly) */
+    font-size: 1rem; /* Base font size (16px) */
+    min-height: 100vh; 
+    max-width: 100vw;/* Full viewport height */
+    }  
+    .slider-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.7);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-btn:hover {
+    background: rgba(255,255,255,0.9);
+}
+
+.slider-btn.prev {
+    left: 20px;
+}
+
+.slider-btn.next {
+    right: 20px;
+}
+
+.pagination-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: rgba(255,255,255,0.9);
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .slide {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide {
+        height: 300px;
+    }
+}
+
+
+.social-container {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    padding: 20px;
+    background-color: #7efff9;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+}
+
+.social-item:hover {
+    transform: translateY(-2px);
+}
+
+.telegram {
+    color: #0088cc;
+}
+
+.youtube {
+    color: #ff0000;
+}
+
+.youtube {
+    color: #ff0000;
+}
+.whatsapp{
+    color: green;
+
+}
+
+.social-text {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Optional hover effect for text */
+.social-item:hover .social-text {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 480px) {
+    .social-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+    </style>
+</head>
+<body>
+    {% include 'login/navbar_mainpage.html'%}
+    <div class="video-container">
+        <video autoplay muted loop id="bg-video">
+            <source src="/static/solar_sale.mp4" type="video/mp4">
+        </video>
+        <div class="content">
+            <div class="left-content">
+                <h2 class="animated-text">Welcome to Your Success Journey</h2>
+                <button class="cta-btn">Explore Courses</button>
+            </div>
+            <div class="shape-container">
+                <div class="decorative-dots"></div>
+                <div class="shape-background"></div>
+                <div class="photo-wrapper">
+                    <img src="/static/student1.png" alt="Attractive Photo">
+
+                    <!-- <img src="https://plus.unsplash.com/premium_photo-1683140840845-073fa9638261?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQxfHxzdHVkZW50JTIwd2l0aCUyMGJvb2slMjBhbmQlMjBsbGFweW9wJTIwZnJvbnQlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D" alt="Attractive Photo"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Nature">
+            </div>
+            <div class="slide">
+                <img src="/static/2023.jpg" alt="Mountain">
+            </div>
+            <div class="slide">
+                <img src="https://media.istockphoto.com/id/1387900612/photo/automation-data-analytic-with-robot-and-digital-visualization-for-big-data-scientist.jpg?s=1024x1024&w=is&k=20&c=BdevKMKtOgXoPwbZE9v_PU_q94-G5LgboedYsvyKP-g=" alt="Ocean">
+            </div>
+            <div class="slide">
+                <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=1024x1024&w=is&k=20&c=lqHbBScxwQa3wcTySqNOYwyJhUIPB1V4m1PtSIK9BdQ=" alt="Forest">
+            </div>
+        </div>
+        
+        <button class="slider-btn prev">❮</button>
+        <button class="slider-btn next">❯</button>
+        
+        <div class="pagination-dots"></div>
+    </div>
+
+
+
+    <div class="scrolling-wrapper">
+        <h1 class="animated-heading">Bihar Board Exam related Classes</h1>
+        <div class="scrolling-text">Class 10th  • Class 12th  •  Competative Exam  </div>
+    </div>
+    <div class="video-carousel">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Example Slide - Replace with your videos -->
+                
+                <div class="swiper-slide">
+                    <a href="https://youtube.com/playlist?list=PLLTo_ibV5H_WTeplzVcGV2jixW3J9G80A&si=CbA9oSFXqN5D267W" 
+                       class="video-link" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <div class="video-thumbnail">
+
+                            <img src="https://img.youtube.com/vi/OJXVGwEAM3c/maxresdefault.jpg" 
+                     alt="Playlist thumbnail" 
+                     class="thumbnail-image">
+                            <div class="play-button"></div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Class 10th Math Playlist</h3>
+                            <p class="video-channel">By - Er. Awadhesh Sir</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="https://youtube.com/playlist?list=PLLTo_ibV5H_X2sRqnep4geEM4tTVbrz5E&si=y2PJ6KZkk2e9yce7" 
+                       class="video-link" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <div class="video-thumbnail">
+
+                            <img src="https://img.youtube.com/vi/FGoaPs4ACbI/maxresdefault.jpg" 
+                     alt="Playlist thumbnail" 
+                     class="thumbnail-image">
+                            <div class="play-button"></div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">History Classes </h3>
+                            <p class="video-channel">By - Sujit Sir</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="https://youtube.com/playlist?list=PLLTo_ibV5H_WGWAIntT00_4w4cP8evv1z&si=NNLV_B_BlXK7NfGv" 
+                       class="video-link" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <div class="video-thumbnail">
+
+                            <img src="https://img.youtube.com/vi/O2hkE8MEIs0/maxresdefault.jpg" 
+                     alt="Playlist thumbnail" 
+                     class="thumbnail-image">
+                            <div class="play-button"></div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Science </h3>
+                            <p class="video-channel">By - Nilam kumari</p>
+                        </div>
+                    </a>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+
+        <div class="scrolling-wrapper">
+            <h1 class="animated-heading">Our Technical Videos for Competitive Exams</h1>
+        </div>
+
+    <div class="slider2-container2">
+        
+        <button class="nav-btn2 prev-btn2">←</button>
+        <button class="nav-btn2 next-btn2">→</button>
+        <div class="slider2">
+            <!-- Video Cards -->
+
+            <div class="card">
+                <div class="video-container2">
+                    <iframe src="https://www.youtube.com/embed/Y6an4aMh2-o" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>BPSC TRE 4 / STET </h3>
+                    <p>Computer Teacher- Free Classes</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container2">
+                    <iframe src="https://www.youtube.com/embed/pUqGIAHJXSo" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>Data Structure classes</h3>
+                    <p>By : Er.Awadhesh Giri</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="video-container2">
+                    <iframe src="https://www.youtube.com/embed/oVymvUw8qfM" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>C++ Theory Lecture</h3>
+                    <p>for Competative Exam - BPSC / STET</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container2">
+                    <iframe src="https://www.youtube.com/embed/gpy-tKFvDP4" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>MCQ Series</h3>
+                    <p>C++ / Network / DSA </p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="video-container2">
+                    <iframe src="https://www.youtube.com/embed/Fo8dv3MoxTo" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>SBI SO/ TRE4 / STET </h3>
+                    <p>Quick Revision for Computer Teacher</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-container">
+        <a href="https://t.me/aryaitechclasses" class="social-item">
+            <i class="fab fa-telegram telegram fa-lg"></i>
+            <span class="social-text">Join Telegram</span>
+        </a>
+        
+        <a href="https://www.youtube.com/@AryaTechnologyATECH" class="social-item">
+            <i class="fab fa-youtube youtube fa-lg"></i>
+            <span class="social-text"> Subscribe Now </span>
+        </a>
+
+        <a href="https://www.youtube.com/@exammantrabihar" class="social-item">
+            <i class="fab fa-youtube youtube fa-lg"></i>
+            <span class="social-text">Exam mantra Bihar</span>
+        </a>
+
+        <a href="" class="social-item">
+            <i class="fab fa-whatsapp whatsapp fa-lg"></i>
+            <span class="social-text">Join Whatsapp</span>
+        </a>
+
+    </div>
+    
+    {% include 'login/footer.html' %}
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+
+</body>
+</html>

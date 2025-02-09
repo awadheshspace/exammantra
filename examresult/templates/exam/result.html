@@ -1,0 +1,89 @@
+{% extends 'exam/base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Result Summary Card -->
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Exam Result: {{ result.test.name }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div class="display-4 text-success">{{ result.score }}</div>
+                    <p class="text-muted">Correct Answers</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="display-4 text-danger">{{ total_questions|subtract:result.score }}</div>
+                    <p class="text-muted">Incorrect Answers</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="display-4 text-info">
+                        {{ result.score|divide:total_questions|multiply:100|floatformat:0 }}%
+                    </div>
+                    <p class="text-muted">Overall Score</p>
+                </div>
+            </div>
+            
+            <div class="progress mt-4" style="height: 25px;">
+                <div class="progress-bar bg-success" 
+                     role="progressbar" 
+                     style="width: {{ result.score|divide:total_questions|multiply:100 }}%">
+                    Correct
+                </div>
+                <div class="progress-bar bg-danger" 
+                     role="progressbar" 
+                     style="width: {{ total_questions|subtract:result.score|divide:total_questions|multiply:100 }}%">
+                    Incorrect
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Answers -->
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Answer Review</h4>
+        </div>
+        <div class="card-body">
+            {% for question in questions %}
+            <div class="mb-4 p-3 {% if user_answers|get_item:question.id == question.correct_option %}border-start border-5 border-success{% else %}border-start border-5 border-danger{% endif %}">
+                <h5>Question {{ forloop.counter }}</h5>
+                <p class="lead">{{ question.text }}</p>
+                
+                <div class="list-group">
+                    {% for i in "1234" %}
+                    <div class="list-group-item {% if forloop.counter == question.correct_option %}list-group-item-success{% elif forloop.counter == user_answers|get_item:question.id %}list-group-item-danger{% endif %}">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 30px;">
+                                {% if forloop.counter == question.correct_option %}
+                                <i class="fas fa-check-circle text-success"></i>
+                                {% elif forloop.counter == user_answers|get_item:question.id %}
+                                <i class="fas fa-times-circle text-danger"></i>
+                                {% endif %}
+                            </div>
+                            {{ question|get_option:i }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                {% if user_answers|get_item:question.id != question.correct_option %}
+                <div class="mt-2 text-muted">
+                    <small>Your answer: Option {{ user_answers|get_item:question.id }}</small>
+                </div>
+                {% endif %}
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a href="{% url 'examresult:test_list' %}" class="btn btn-primary btn-lg">
+            <i class="fas fa-arrow-left"></i> Back to Tests
+        </a>
+    </div>
+</div>
+{% endblock %}

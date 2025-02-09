@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Mantra Bihar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tech-color: #2196F3;
+            --board-color: #4CAF50;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .tech-section .section-title::after {
+            background: var(--tech-color);
+        }
+
+        .board-section .section-title::after {
+            background: var(--board-color);
+        }
+
+        .wave-divider {
+            height: 150px;
+            background: #fff;
+            position: relative;
+            margin: 4rem 0;
+            clip-path: ellipse(100% 100% at 50% 0%);
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .note-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 4px solid;
+        }
+
+        .note-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .tech-section .note-card {
+            border-color: var(--tech-color);
+        }
+
+        .board-section .note-card {
+            border-color: var(--board-color);
+        }
+
+        .note-header {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .note-subject {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .note-topic {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-section .download-btn {
+            background: linear-gradient(135deg, var(--tech-color), #1976D2);
+            color: white;
+        }
+
+        .board-section .download-btn {
+            background: linear-gradient(135deg, var(--board-color), #45a049);
+            color: white;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+         /* Add these styles to your existing CSS */
+    .search-container {
+        margin: 2rem 0;
+        padding: 0 1rem;
+        margin-top: 4%;
+    }
+
+    .search-box {
+        max-width: 420px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        border: 2px solid #ddd;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        padding-right: 50px;
+    }
+
+    .search-box input:focus {
+        outline: none;
+        border-color: var(--tech-color);
+        box-shadow: 0 0 15px rgba(33, 150, 243, 0.2);
+    }
+
+    .search-box button {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #666;
+        font-size: 1.2rem;
+    }
+
+    .search-box button:hover {
+        color: var(--tech-color);
+    }
+
+    .preview-container {
+        height: 200px;
+        margin: 1rem 0;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        background: #f8f9fa;
+    }
+
+    .pdf-preview {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .card-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .preview-btn {
+        background: linear-gradient(135deg, #ff9800, #f57c00);
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .preview-btn:hover {
+        transform: scale(1.05);
+    }
+
+    .pagination {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .page-link {
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        background: #1a73e8;
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .page-link:hover {
+        opacity: 0.9;
+    }
+
+    .current-page {
+        padding: 0.5rem 1rem;
+        color: #666;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 2% auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 1000px;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        color: #666;
+    }
+
+
+    /* for practice set */
+
+
+    </style>
+</head>
+<body>
+    {% include 'login/navbar.html' %}
+    {% block content %}{% endblock %}
+    {% include 'login/footer.html' %}
+</body>
+</html>

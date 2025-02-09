@@ -1,0 +1,32 @@
+{% extends 'practice/base.html' %}
+{% load static %}
+{% block content %}
+<div class="modal show d-block" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Select Your Stream</h5>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row g-4">
+            {% for value, label in form.stream.field.choices %}
+            <div class="col-md-4 text-center">
+              <div class="card h-100">
+                <div class="card-body">
+                  <i class="bi bi-journal-text fs-1 text-primary"></i>
+                  <h5 class="card-title mt-3">{{ label }}</h5>
+                  <button type="submit" name="stream" value="{{ value }}" 
+                         class="btn btn-outline-primary mt-2">Select</button>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

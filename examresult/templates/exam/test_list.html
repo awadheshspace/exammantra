@@ -1,0 +1,14 @@
+{% extends 'exam/base.html' %}
+{% load static%}
+{% block content %}
+<div class="container mt-5">
+    <h2>Available Tests</h2>
+    <div class="list-group">
+        {% for test in tests %}
+        <a href="{% url 'examresult:take_test' test.id %}" class="list-group-item list-group-item-action">
+            {{ test.name }} ({{ test.duration }} minutes)
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}  

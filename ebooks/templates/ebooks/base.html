@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Mantra - {% block title %}{% endblock %}</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        /* Custom CSS for eBook Section */
+
+
+        .card {
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .ebook-thumbnail {
+            height: 200px;
+            object-fit: cover;
+        }
+        .ebook-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .ebook-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+
+        .ebook-thumbnail {
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #007bff;
+        }
+
+        .ebook-tags .badge {
+            background-color: #e9ecef;
+            color: #495057;
+            font-weight: 500;
+            margin: 2px;
+        }
+
+        .pagination .page-link {
+            color: #007bff;
+            border: 1px solid #dee2e6;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .filter-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .search-input {
+            border-radius: 25px;
+            padding: 12px 20px;
+        }
+
+        .category-select {
+            border-radius: 25px;
+            padding: 12px 20px;
+        }
+
+        .tag-dropdown .dropdown-menu {
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tag-checkbox {
+            padding: 5px 0;
+        }
+
+        .download-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            padding-right: 35px;
+        }
+
+        .download-btn i {
+            position: absolute;
+            right: -20px;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover i {
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .ebook-card {
+                margin-bottom: 20px;
+            }
+            
+            .filter-card .form-control {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">Exam Mantra</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'exammantra:mainpage' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'exammantra:notes_list' %}">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'exammantra:mainpage' %}">Contact us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5">
+        <div class="container py-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Exam Mantra. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+    
+  
+    {% include 'login/footer.html' %}
+</body>
+</html>

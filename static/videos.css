@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.slider2-container2 {
+    position: relative;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.slider2 {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px 0;
+    scrollbar-width: none; /* Firefox */
+}
+
+.slider2::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.card {
+    flex: 0 0 calc(90% - 10px);
+    height: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.video-container2 {
+    width: 100%;
+    height: 70%;
+    position: relative;
+}
+
+.video-container2 iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.nav-btn2 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev-btn2 {
+    left: 0;
+}
+
+.next-btn2 {
+    right: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 768px) {
+    .card {
+        flex: 0 0 calc(50% - 10px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        flex: 0 0 calc(33.33% - 10px);
+    }
+}
