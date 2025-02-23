@@ -405,11 +405,6 @@ body {
 
 
 
-.scrolling-wrapper {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
 .animated-heading {
     color: #030000;
@@ -428,32 +423,4 @@ body {
     transform: translateY(0);
 }
 
-.scrolling-text {
-    color: rgb(248, 0, 0);
-    font-size: 1.5rem;
-    white-space: nowrap;
-    position: absolute;
-    animation: scrollText 20s linear infinite;
-    user-select: none;
-}
 
-@keyframes scrollText {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-@media (max-width: 768px) {
-    .animated-heading {
-        font-size: 2.5rem;
-    }
-    .scrolling-text {
-        font-size: 3rem;
-    }
-}
-
-
-/* for social media  */

@@ -1,0 +1,45 @@
+{% extends 'payments/base.html' %}
+ 
+{% load static %}  
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Student Fee Dashboard</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Total Fee</th>
+                    <th>Paid Fee</th>
+                    <th>Due Fee</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.roll_number }}</td>
+                    <td>{{ student.full_name }}</td>
+                    <td>{{ student.father_name }}</td>
+                    <td>₹{{ student.total_fee }}</td>
+                    <td>₹{{ student.paid_fee }}</td>
+                    <td class="{% if student.due_fee > 0 %}text-danger{% else %}text-success{% endif %}">
+                        ₹{{ student.due_fee }}
+                    </td>
+                    <td>
+                        <a href="{% url 'payments:student_payment' student.roll_number %}" 
+                           class="btn btn-sm btn-primary">
+                            View 
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+<!-- templates/assignments/view_assignments.html -->
+{% extends 'dash/base2.html' %}
+
+{% block content %}
+<h2>Your Submitted Assignments</h2>
+
+<ul>
+    {% for assignment in assignments %}
+        <li>
+            <strong>{{ assignment.title }}</strong><br>
+            Submitted on: {{ assignment.submission_date }}<br>
+            File: <a href="{{ assignment.file.url }}">Download</a>
+        </li>
+    {% empty %}
+        <li>You have not submitted any assignments yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

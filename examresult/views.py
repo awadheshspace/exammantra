@@ -5,7 +5,7 @@ from .models import Test, Question, ExamResult
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth import login
-
+                                    
 def my_view(request):
     user = request.user 
 

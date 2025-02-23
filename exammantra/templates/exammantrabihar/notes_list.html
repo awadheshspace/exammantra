@@ -122,7 +122,7 @@
     
         <div class="pagination">
             {% if board_notes.has_previous %}
-                <a href="?board_page={{ board_notes.previous_page_number }}&board_page={{ tech_notes.number }}&q={{ search_query }}" 
+                <a href="?board_page={{ board_notes.previous_page_number }}&tech_page={{ tech_notes.number }}&q={{ search_query }}" 
                    class="page-link">&laquo; Previous</a>
             {% endif %}
             
@@ -131,7 +131,7 @@
             </span>
             
             {% if board_notes.has_next %}
-                <a href="?board_page={{ board_notes.next_page_number }}&board_page={{ tech_notes.number }}&q={{ search_query }}" 
+                <a href="?board_page={{ board_notes.next_page_number }}&tech_page={{ tech_notes.number }}&q={{ search_query }}" 
                    class="page-link">Next &raquo;</a>
             {% endif %}
         </div>

@@ -1,0 +1,38 @@
+{% extends 'dash/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg card-hover">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0"><i class="bi bi-box-arrow-in-right"></i> Student Login</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="needs-validation">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" name="username" required>
+                            <div class="invalid-feedback">Please enter your username</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" required>
+                            <div class="invalid-feedback">Please enter your password</div>
+                        </div>
+                        <input type="hidden" name="next" value="{{ next }}"> 
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3" >Login</button>
+                        <div class="text-center">
+                            <small class="text-muted">New student? 
+                                <a href="{% url 'practiceset:register' %}" class="text-primary">Create account</a>
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

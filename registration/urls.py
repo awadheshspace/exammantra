@@ -23,18 +23,17 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path("login/",include('myapp.urls')),
-    # path("home/",include('exammantra.urls')),
-    path('exammantra/', include('exammantra.urls')),
+    path('', include('exammantra.urls')),   # remove 'exammantra/'
     path('ebook/', include('ebooks.urls')),
     path('practice/', include('practiceset.urls')),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('live/', include('examresult.urls',namespace='examresult')),
     path('contact/', include('contact.urls')),
-
-    # path('practice/', include('practiceset.urls', namespace='practiceset')),  # 👈 Namespace
-    # path('live/', include('examresult.urls', namespace='exam')),
+    path('dashboard/', include('dashboard.urls')),
+    path('courses/', include('courses.urls')),
+    path('payments/', include('payments.urls')),
+    # path('fee/',include('feemanagement.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
 ] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-#  path('live/', include(('examresult.urls', 'examresult'), namespace='examresult')),

@@ -1,0 +1,29 @@
+<!-- templates/assignments/upload_assignment.html -->
+{% extends 'dash/base2.html' %}
+{% load static %}
+{% block content %}
+<div class="upload-container p-5 text-center mb-4">
+    <i class="bi bi-cloud-upload fs-1 text-muted"></i>
+    <p class="text-muted mt-2 mb-0">Drag and drop files here</p>
+    <p class="text-muted">or</p>
+    
+    <!-- Form to submit assignment -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="mb-4">
+            <label class="form-label">Assignment Title</label>
+            {{ form.title }}  <!-- Django form field for title -->
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Assignment File</label>
+            {{ form.file }}  <!-- Django form field for file upload -->
+        </div>
+
+        <button class="btn btn-primary w-100">
+            <i class="bi bi-send-check"></i> Submit Assignment
+        </button>
+    </form>
+</div>
+{% endblock %}

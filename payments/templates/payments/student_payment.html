@@ -1,0 +1,27 @@
+{% extends 'payments/base.html' %}
+{% load static %}  
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Fee Payment - {{ student.full_name }}</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Student Details</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">Roll Number: {{ student.roll_number }}</li>
+                        <li class="list-group-item">Name: {{ student.full_name }}</li>
+                        <li class="list-group-item">Father's Name: {{ student.father_name }}</li>
+                        <li class="list-group-item">Total Fee: ₹{{ student.total_fee }}</li>
+                        <li class="list-group-item">Paid Fee: ₹{{ student.paid_fee }}</li>
+                        <li class="list-group-item text-danger">Due Fee: ₹{{ student.due_fee }}</li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 

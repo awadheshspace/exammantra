@@ -176,7 +176,7 @@
             
             <li class="dropdown">
                 <!-- <a href="">Resources <i class="fas fa-chevron-down"></i></a> -->
-                <a class="nav-link dropdown-toggle" href="#" role="button" 
+                <a class="nav-link dropdown-toggle text-danger" href="#" role="button" 
                 data-bs-toggle="dropdown" aria-expanded="false"
                 id="resourcesDropdown">
                  Resources
@@ -184,15 +184,17 @@
                 <div class="dropdown-content">
                     <a href="{% url 'exammantra:notes_list' %}"><i class="fas fa-file-alt"></i> Free Notes</a>
                     <a href="{% url 'ebooks:ebook_list' %}"><i class="fas fa-book-open"></i> E-Books</a>
-                    <a href="#"><i class="fas fa-tasks"></i> Practice Set</a>
-                    <a href="#"><i class="fas fa-chalkboard-teacher"></i> Courses</a>
-                    <a href="#"><i class="fas fa-clock"></i> Live Quiz</a>
+                    <a href="{% url 'practiceset:login' %}?next={% url 'practiceset:stream_choice' %}"><i class="fas fa-tasks"></i> Practice Set</a>
+                    <a href="{% url 'courses:course_list'}"><i class="fas fa-chalkboard-teacher"></i> Courses</a>
+                    <a href="{% url 'practiceset:login' %}?next={% url 'examresult:test_list' %}"><i class="fas fa-clock"></i> Live Quiz</a>
                     <a href="#"><i class="fas fa-poll"></i> Result</a>
                 </div>
             </li>
 
             <li><a href="{% url 'contact:contact_page' %}">Contact</a></li>
-            <li><a href="#" class="login-btn">Login</a></li>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'dashboard:dashboard_login' %}" class="login-btn">Login</a></li>
+            {% endif %}
         </ul>
 
         <div class="mobile-menu">

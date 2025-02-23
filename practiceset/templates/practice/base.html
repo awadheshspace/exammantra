@@ -199,55 +199,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <!-- Brand Logo & Name -->
-            <a class="navbar-brand" href="/">
-                <img src="{% static 'logo2.png' %}" alt="Exam Mantra Logo" class="brand-logo">
-                <span class="h4">Exam Mantra</span>
-            </a>
-
-            <!-- Mobile Toggler -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navigation Items -->
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <!-- Practice Set -->
-                    <li><a class="nav-link"  href="{% url 'exammantra:mainpage' %}">
-                        <i class="bi "></i>
-                        Home</a></li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                </i>Resources
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{% url 'exammantra:notes_list' %}"><i class="bi bi-journal-text"></i>Notes</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ebooks:ebook_list' %}"><i class="bi bi-book"></i>eBook</a></li>
-                                <li><a class="dropdown-item" href="{% url 'practiceset:login' %}?next={% url 'examresult:test_list' %}"><i class="bi bi-clock"></i>Live Quiz</a></li>
-                                <li><a class="dropdown-item" href="{% url 'practiceset:login' %}?next={% url 'practiceset:stream_choice' %}"><i class="bi bi-pencil-square"></i>Practice Set</a></li>
-                             </ul>
-                        </li>    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'practiceset:login' %}?next={% url 'practiceset:stream_choice' %}">
-                            <i class="bi bi-journal-bookmark"></i> login
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'practiceset:register' %}">
-                            <i class="bi bi-journal-bookmark"></i> register
-                        </a>
-                    </li>
-                    
-                   
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'login/navbar2.html'%}
 
     <!-- Main Content -->
     <main class="main-content">

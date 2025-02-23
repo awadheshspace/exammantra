@@ -1,0 +1,84 @@
+{% extends 'courses/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-4">{{ course.title }}</h1>
+            <div class="course-thumbnail mb-4">
+                <img src="{{ course.thumbnail.url }}" class="img-fluid rounded" alt="{{ course.title }}">
+            </div>
+            
+            <div class="accordion" id="moduleAccordion">
+                {% for module in modules %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ module.id }}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapse{{ module.id }}">
+                            Module {{ forloop.counter }}: {{ module.title }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ module.id }}" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <div class="row">
+                                {% for video in module.videos.all %}
+                                <div class="col-md-6 mb-3">
+                                    <div class="card video-card">
+                                        <div class="card-body">
+                                            <h5>{{ video.title }}</h5>
+                                            <video controls width="100%">
+                                                <source src="{{ video.video_file.url }}" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                
+                                {% for pdf in module.pdf_notes.all %}
+                                <div class="col-md-6 mb-3">
+                                    <div class="card pdf-card">
+                                        <div class="card-body">
+                                            <h5>{{ pdf.title }}</h5>
+                                            <a href="{{ pdf.pdf_file.url }}" target="_blank" 
+                                               class="btn btn-primary">
+                                                <i class="bi bi-file-pdf"></i> View PDF
+                                            </a>
+                                            <a href="{{ pdf.pdf_file.url }}" download 
+                                               class="btn btn-success">
+                                                <i class="bi bi-download"></i> Download
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card instructor-card shadow">
+                <div class="card-body">
+                    <h4 class="card-title">Instructor</h4>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="avatar me-3">
+                            <i class="bi bi-person-circle fs-1"></i>
+                        </div>
+                        <div>
+                            <h5>{{ course.instructor.get_full_name }}</h5>
+                            <p class="text-muted mb-0">Professional Instructor</p>
+                        </div>
+                    </div>
+                    <div class="course-info">
+                        <p><i class="bi bi-clock"></i> Created: {{ course.created_at|date }}</p>
+                        <p><i class="bi bi-currency-rupee"></i> Price: ₹{{ course.price }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

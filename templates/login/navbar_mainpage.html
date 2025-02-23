@@ -16,7 +16,6 @@
             margin-right: 10px;
         }
 
-     
         .dropdown-menu {
             border: none;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -75,13 +74,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container-fluid">
             <!-- Brand Logo & Name -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'exammantra:mainpage' %}">
                 <img src="/static/logo2.png" alt="EM">
                 <!-- Exam Mantra -->
-                <span class="brand-name">Exam Mantra</span>
+                <span class="brand-name">Exam Mantra Bihar</span>
             </a>
 
-            <!-- Mobile Toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -105,7 +103,7 @@
                             <li><a class="dropdown-item" href="{% url 'practiceset:login' %}?next={% url 'examresult:test_list' %}"><i class="bi bi-clock"></i>Live Test</a></li>
                             <li><a class="dropdown-item" href="{% url 'practiceset:login' %}?next={% url 'practiceset:stream_choice' %}"><i class="bi bi-pencil-square"></i>Practice Set</a></li>
                             <li><a class="dropdown-item" href="#"><i class="bi bi-graph-up"></i>Result</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-play-circle"></i>Course</a></li>
+                            <li><a class="dropdown-item" href="{% url 'courses:course_list' %}"><i class="bi bi-play-circle"></i>Course</a></li>
                         </ul>
                     </li>
 
@@ -114,9 +112,11 @@
                         <a class="nav-link" href="{% url 'contact:contact_page' %}"></i>Contact</a>
                     </li>
 
-                    <!-- Login -->
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-black" href="#"><i class="bi bi-box-arrow-in-right"></i>Login</a>
+                        <a class="nav-link btn btn-secondary text-black" href="{% url 'practiceset:register' %}"><i class="bi bi-box-arrow-in-right"></i>SignUp</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-black" href="{% url 'dashboard:dashboard_login' %}"><i class="bi bi-box-arrow-in-right"></i>Login</a>
                     </li>
                 </ul>
             </div>

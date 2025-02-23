@@ -12,18 +12,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def main_page(request):
     return render(request,'login/mainpage.html')
 
-
-
-# def notes_list(request):
-#     technical_notes = PDFNote.objects.filter(category='technical')
-#     board_notes = PDFNote.objects.filter(category='board')
-    
-#     context = {
-#         'technical_notes': technical_notes,
-#         'board_notes': board_notes
-#     }
-#     return render(request, 'exammantrabihar/notes_list.html', context)
-
 def notes_list(request):
     search_query = request.GET.get('q', '')
     tech_page = request.GET.get('tech_page', 1)

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamMantra-Dashboard</title>
+    <!-- Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #6c757d;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            padding-top: 80px;
+        }
+        
+   
+        
+        .magic-btn {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .magic-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            gap: 10px;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        .liquid {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 0 50px rgba(255,255,255,0.2);
+            animation: rotate 8s linear infinite;
+            transition: 0.5s;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Live Test Button */
+        .live-test-btn {
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            box-shadow: 0 0 30px rgba(138,43,226,0.4);
+        }
+
+        .live-test-btn .liquid {
+            background: radial-gradient(circle, 
+                rgba(255,255,255,0.4) 0%, 
+                rgba(138,43,226,0.2) 50%, 
+                transparent 100%);
+        }
+
+        /* Practice Set Button */
+        .practice-set-btn {
+            background: linear-gradient(45deg, #32cd32, #006400);
+            box-shadow: 0 0 30px rgba(50,205,50,0.4);
+        }
+
+        .practice-set-btn .liquid {
+            background: radial-gradient(circle, 
+                rgba(255,255,255,0.4) 0%, 
+                rgba(50,205,50,0.2) 50%, 
+                transparent 100%);
+        }
+
+        /* PDF Notes Button */
+        .pdf-notes-btn {
+            background: linear-gradient(45deg, #4169e1, #000080);
+            box-shadow: 0 0 30px rgba(65,105,225,0.4);
+        }
+
+        .pdf-notes-btn .liquid {
+            background: radial-gradient(circle, 
+                rgba(255,255,255,0.4) 0%, 
+                rgba(65,105,225,0.2) 50%, 
+                transparent 100%);
+        }
+
+
+        .ebook-notes-btn {
+            background: linear-gradient(45deg, #dee141, #000080);
+            box-shadow: 0 0 30px rgba(66, 201, 189, 0.4);
+        }
+
+        .ebook-notes-btn .liquid {
+            background: radial-gradient(circle, 
+                rgba(234, 255, 46, 0.507) 0%, 
+                rgba(255, 54, 54, 0.726) 50%, 
+                transparent 100%);
+        }
+
+        /* Hover Effects */
+        .magic-btn:hover .liquid {
+            animation: rotate 4s linear infinite;
+            filter: brightness(1.2);
+        }
+
+        @keyframes glow {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .magic-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 20%, 
+                rgba(255,255,255,0.2) 50%, 
+                transparent 80%);
+            animation: glow 3s infinite linear;
+        }
+
+        @media (max-width: 768px) {
+            .magic-btn {
+                height: 150px;
+            }
+            
+            .btn-content {
+                font-size: 1.2rem;
+            }
+        }
+
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .upload-container {
+            border: 2px dashed #dee2e6;
+            border-radius: 15px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .upload-container:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .live-test-card {
+            background: linear-gradient(135deg, #4a90e2 0%, #2457a3 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .progress-bar {
+            background-color: rgba(255,255,255,0.3);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background-color: white;
+            width: 65%;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+        }
+
+      
+        .navbar{
+            background-color: #dee2e6;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-collapse {
+                background: rgba(255,255,255,0.95);
+                margin-top: 15px;
+                border-radius: 10px;
+                padding: 15px;
+            }
+            
+            .nav-link {
+                color: #1e293b !important;
+                padding: 10px 0 !important;
+            }
+            
+            .nav-link::after {
+                background: var(--primary-color);
+            }
+        }
+
+       
+        .dropdown{
+            margin-left: 30px;
+           
+            border-radius: 8px;
+            background-color: #86ffff;
+            font-weight: bold;
+        }
+
+
+        .dropdown:hover{
+            background-color: #ebff3a;
+            transform: scale(1.1);
+        } 
+
+        .navbar-brand img {
+            height: 40px;
+            margin-left: 20px;
+        }
+        .brand-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+    </style>
+
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'exammantra:mainpage' %}">
+                <img src="/static/logo2.png" alt="EM">
+                <span class="brand-name">Exam Mantra</span>
+            </a>
+    
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" 
+                           data-bs-toggle="dropdown">
+                           Assignments
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{% url 'dashboard:upload_assignment' %}">
+                            </i>send Assignment
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li><a class="dropdown-item" href="{% url 'dashboard:view_assignments' %}">
+                            View Assignment
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li><a class="dropdown-item" href="{% url 'payments:fee_dashboard' %}">
+                            Fee Details
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li><a class="dropdown-item" href="{% url 'contact:contact_page' %}">
+                            Contact
+                        </a></li>
+                    </ul>
+                </div>
+
+              
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" 
+                           data-bs-toggle="dropdown">
+                           <i class="fas fa-user"></i> {{ user.username }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{% url 'exammantra:mainpage' %}">
+                            <i class="bi bi-gear"></i> Home Page
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form method="post" action="{% url 'dashboard:logouts' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item text-danger">
+                                    <i class="bi bi-box-arrow-right"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row g-4">
+
+            <div class="container my-5">
+                <div class="row g-4 justify-content-center">
+
+                    <!-- <fee-details> -->
+                    <div class="col-md-4 text-decoration-none">
+                        <a href="{% url 'payments:fee_dashboard' %}">
+                            <div class="magic-btn pdf-notes-btn">
+                                <div class="btn-content">
+                                    <i class="bi bi-currency-rupee"></i>
+                                    <span>Fee Details </span>
+                                </div>
+                                <div class="liquid"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Live Test Button -->
+                    <div class="col-md-4 text-decoration-none">
+                        <a href="{% url 'examresult:test_list' %}">
+                        <div class="magic-btn live-test-btn">
+                            <div class="btn-content">
+                                <i class="bi bi-lightning-charge"></i>
+                                
+                                    <span>Live Test</span>
+                            </div>  
+                            <div class="liquid"></div>
+                        </div>
+                        </a>
+                    </div>
+            
+                    <!-- Practice Set Button -->
+                    <div class="col-md-4 text-decoration-none" >
+                        <a href="{% url 'practiceset:stream_choice' %}">
+                        <div class="magic-btn practice-set-btn">
+                            <div class="btn-content">
+                                <i class="bi bi-journal-check"></i>
+                                <span>Practice Set</span>
+                            </div>
+                            <div class="liquid"></div>
+                        </div>
+                        </a>
+                    </div>
+                    <!-- PDF Notes Button -->
+                    <div class="col-md-4 text-decoration-none">
+                        <a href="{% url 'exammantra:notes_list' %}">
+                            <div class="magic-btn pdf-notes-btn">
+                                <div class="btn-content">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                    <span>PDF Notes & Model Paper</span>
+                                </div>
+                                <div class="liquid"></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 text-decoration-none">
+                        <a href="{% url 'ebooks:ebook_list' %}">
+                        <div class="magic-btn ebook-notes-btn">
+                            <div class="btn-content">
+                                <i class="bi bi-book"></i>
+                                <span>Ebook</span>
+                            </div>
+                            <div class="liquid"></div>
+                        </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 text-decoration-none">
+                        <a href="{% url 'courses:course_list' %}">
+                        <div class="magic-btn live-test-btn">
+                            <div class="btn-content">
+                                <i class="bi bi-lightning-charge"></i>
+                                
+                                    <span>Courses</span>
+                            </div>  
+                            <div class="liquid"></div>
+                        </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 text-decoration-none">
+                        <a href="{% url 'dashboard:upload_assignment' %}">
+                        <div class="magic-btn practice-set-btn">
+                            <div class="btn-content">
+                                <i class="bi bi-journal-check"></i>
+                                <span>Assignments </span>
+                            </div>
+                            <div class="liquid"></div>
+                        </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Left Column - Assignment Section -->
+            <div class="col-lg-8">
+                <div class="dashboard-card p-4">
+                    <h4 class="mb-4">
+                        <i class="bi bi-upload me-2" aria-hidden="true"></i>Upload Assignment
+                    </h4>
+                <form  action="{% url 'dashboard:upload_assignment' %}" method="POST" enctype="multipart/form-data">
+                    
+                    {% csrf_token %}
+
+                  
+                        <input type="file" class="visually-hidden" name="file" id="fileInput">
+                        <label for="fileInput" class="btn btn-primary">
+                            <i class="bi bi-folder2-open me-2"></i>Browse Files
+                        </label>
+                    
+                    <div class="mb-4">
+                        <label for="assignmentTitle" class="form-label">Assignment Title</label>
+                        <input type="text" class="form-control" id="assignmentTitle" 
+                               placeholder="Enter assignment title" name="title">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="studentName" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="studentName" 
+                               placeholder="Enter your name" name="student">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-send-check me-2"></i> Submit Assignment
+                    </button>
+                </form>
+                </div>
+            </div>
+
+            <!-- Right Column - Live Test Section -->
+            <div class="col-lg-4">
+                <div class="dashboard-card live-test-card p-4">
+                    <h4 class="text-white mb-4">
+                        <i class="bi bi-clock-history me-2"></i>Live Tests
+                    </h4>
+                    
+                    <div class="test-item mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Mathematics Quiz</span>
+                            <span>25 min</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="test-item mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Hindi & Sasnkrit</span>
+                            <span>60 min</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-item mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Science Test</span>
+                            <span>40 min</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="test-item mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>BPSC4 - Computer Teacher</span>
+                            <span>60 min</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="test-item mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>STET-Computer Science</span>
+                            <span>2 Hr</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:82%"></div>
+                        </div>
+                    </div>
+
+                    <a href="{% url 'examresult:test_list' %}" class="btn btn-light w-100 mt-3">
+                        <i class="bi bi-plus-circle"></i> Start New Test
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Drag and drop functionality
+        const uploadContainer = document.querySelector('.upload-container');
+        
+        uploadContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadContainer.style.borderColor = '#4a90e2';
+        });
+        
+        uploadContainer.addEventListener('dragleave', () => {
+            uploadContainer.style.borderColor = '#dee2e6';
+        });
+        
+        uploadContainer.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadContainer.style.borderColor = '#dee2e6';
+            // Handle file upload
+        });
+    </script>
+     {% block extra_js %}{% endblock %}
+     {% include 'login/footer.html' %}
+</body>
+</html>

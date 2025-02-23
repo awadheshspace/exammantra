@@ -104,6 +104,54 @@
     transform: scale(1.2);
 }
 
+
+
+.animated-text {
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 2rem !important;
+    }
+
+    .cta-btn {
+        transition: all 0.5s ease;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+        border: 3px solid transparent;
+    }
+
+    .hover-effect:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgb(218, 255, 86);
+    }
+
+    .fade-in {
+        animation: fadeIn 1.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .left-content {
+            padding: 2rem 1rem;
+        }
+        
+        .animated-text {
+            font-size: 2rem;
+        }
+        
+        .cta-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+        }
+    }
+
 @media (max-width: 768px) {
     .slide {
         height: 400px;
@@ -184,10 +232,15 @@
             <source src="/static/solar_sale.mp4" type="video/mp4">
         </video>
         <div class="content">
-            <div class="left-content">
-                <h2 class="animated-text">Welcome to Your Success Journey</h2>
-                <button class="cta-btn">Explore Courses</button>
+
+            <div class="left-content text-center py-5">
+                <h2 class="animated-text display-4 mb-4 fade-in">Welcome to Your Success Journey</h2>
+                <a href="{% url 'courses:course_list' %}" class="cta-btn btn btn-primary btn-lg shadow hover-effect">
+                    Explore Courses
+                </a>
             </div>
+
+
             <div class="shape-container">
                 <div class="decorative-dots"></div>
                 <div class="shape-background"></div>
@@ -210,10 +263,10 @@
                 <img src="/static/2023.jpg" alt="Mountain">
             </div>
             <div class="slide">
-                <img src="https://media.istockphoto.com/id/1387900612/photo/automation-data-analytic-with-robot-and-digital-visualization-for-big-data-scientist.jpg?s=1024x1024&w=is&k=20&c=BdevKMKtOgXoPwbZE9v_PU_q94-G5LgboedYsvyKP-g=" alt="Ocean">
+                <img src="/static/new.jpeg" alt="2024 Photo">
             </div>
             <div class="slide">
-                <img src="https://media.istockphoto.com/id/1206796363/photo/ai-machine-learning-hands-of-robot-and-human-touching-on-big-data-network-connection.jpg?s=1024x1024&w=is&k=20&c=lqHbBScxwQa3wcTySqNOYwyJhUIPB1V4m1PtSIK9BdQ=" alt="Forest">
+                <img src="/static/skg2.jpg" alt="Attractive Photo">
             </div>
         </div>
         
@@ -225,10 +278,7 @@
 
 
 
-    <div class="scrolling-wrapper">
-        <h1 class="animated-heading">Bihar Board Exam related Classes</h1>
-        <div class="scrolling-text">Class 10th  • Class 12th  •  Competative Exam  </div>
-    </div>
+
     <div class="video-carousel">
         <div class="swiper-container">
             <div class="swiper-wrapper">

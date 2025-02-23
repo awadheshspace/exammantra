@@ -55,12 +55,14 @@ def login_view(request):
     next_url = request.GET.get('next')
     return render(request, 'practice/login.html', {'next': next_url})
 
-
+    
 
 def logout_view(request):
     logout(request)
     messages.success(request, 'You have been logged out successfully...... Please login again To Access the Resources') 
     return redirect('practiceset:login')
+
+
 
 def register_view(request):
     if request.method == 'POST':

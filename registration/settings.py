@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xkcnnjl93la&ys!)9(++5(yrokasoehj(mx@9ahf$4d8c3+zb5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,14 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',
-
+    'django.contrib.humanize',
     'ebooks',
     'exammantra',
     'practiceset',
     'examresult',
     'contact',
-    # 'exammantra.apps.ExammantraConfig',
+    'dashboard',
+    'courses',
+    'payments',
+
     ]
 
 
@@ -52,14 +54,16 @@ CSRF_COOKIE_SECURE = False
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'practiceset.CustomUser'
-LOGIN_URL = 'practiceset:login'
+LOGIN_URL = 'dashboard:dashboard_login'    #add 20/feb
+# LOGIN_URL = '/accounts/login/'
+# LOGIN_REDIRECT_URL = '/courses/'
 # LOGIN_REDIRECT_URL = 'examresult:test_list'
 
 
 PDFKIT_CONFIG = {
     'wkhtmltopdf': '/usr/bin/wkhtmltopdf'  # Direct path for Ubuntu
 }
-LOGIN_URL = '/accounts/login/'    #login add 08/02
+   #login add 08/02
 X_FRAME_OPTIONS = 'ALLOWALL'
 
 MIDDLEWARE = [
@@ -149,3 +153,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+RAZORPAY_KEY_ID= 'rzp_test_H9I9sskuRUJluO'
+RAZORPAY_KEY_SECRET='eYYlVCGV5jLuUKkodtA8EmvA'
